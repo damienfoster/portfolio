@@ -20,11 +20,10 @@
 
 # Project information
 site_name: Damien Foster | Portfolio
-site_url: https://squidfunk.github.io/mkdocs-material/
-site_author: Martin Donath
+site_url: https://damienfoster.net/
+site_author: Damien Foster
 site_description: >-
-  Write your documentation in Markdown and create a professional static site in
-  minutes – searchable, customizable, in 60+ languages, for all devices
+  Professional portfolio and network engineering documentation for Damien Foster.
 
 # Repository
 repo_name: squidfunk/mkdocs-material
