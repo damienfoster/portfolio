@@ -18,8 +18,6 @@ F# Copyright (c) 2016-2025 Martin Donath <martin.donath@squidfunk.com>
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 
-# Project information
-# Project information
 site_name: Damien Foster | Portfolio
 site_url: https://damienfoster.net/
 site_author: Damien Foster
@@ -31,7 +29,7 @@ repo_name: damienfoster/portfolio
 repo_url: https://github.com/damienfoster/portfolio
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2025 Martin Donath
+copyright: Copyright &copy; 2016 - 2025 Damien Foster
 
 # Configuration
 theme:
