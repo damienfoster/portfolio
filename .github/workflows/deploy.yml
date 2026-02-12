@@ -32,22 +32,12 @@ jobs:
           wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared-linux-amd64.deb
 
-      - name: Configure SSH
+      - name: Configure SSH Key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          cat >> ~/.ssh/config <<EOF
-          Host ssh.damienfoster.net
-            ProxyCommand cloudflared access ssh --hostname %h --service-token-id $CF_ID --service-token-secret $CF_SECRET --port 22
-            StrictHostKeyChecking no
-          EOF
-        env:
-          CF_ID: "${{ secrets.CF_CLIENT_ID }}"
-          CF_SECRET: "${{ secrets.CF_CLIENT_SECRET }}"
 
       - name: Deploy to Lenovo via Rsync
         run: |
-          rsync -avz --delete site/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
-
-          
+          rsync -avz --delete site/ -e "ssh -o StrictHostKeyChecking=no -o ProxyCommand='cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }} --port 22'" ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
