@@ -2,7 +2,7 @@ name: Deploy MkDocs to Lenovo
 on:
   push:
     branches:
-      - master  # Trigger only when you push to the master branch
+      - master
 
 jobs:
   deploy:
@@ -16,13 +16,9 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install MkDocs, Material Theme, & Plugins
+      - name: Install MkDocs & Plugins
         run: |
-          pip install mkdocs-material \
-                      mkdocs-minify-plugin \
-                      mkdocs-git-revision-date-localized-plugin \
-                      mkdocs-blog-plugin \
-                      pymdown-extensions
+          pip install mkdocs-material mkdocs-minify-plugin mkdocs-git-revision-date-localized-plugin mkdocs-blog-plugin pymdown-extensions
 
       - name: Build Website
         run: mkdocs build
