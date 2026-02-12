@@ -35,5 +35,8 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
 
       - name: Deploy to Lenovo via Rsync
+        env:
+          CF_ID: ${{ secrets.CF_CLIENT_ID }}
+          CF_SECRET: ${{ secrets.CF_CLIENT_SECRET }}
         run: |
-          rsync -avz --delete site/ -e "ssh -o StrictHostKeyChecking=no -o ProxyCommand='cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }} --port 22'" ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
+          rsync -avz --delete site/ -e "ssh -o StrictHostKeyChecking=no -o ProxyCommand='cloudflared access ssh --hostname %h --service-token-id $CF_ID --service-token-secret $CF_SECRET --port 22'" ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
