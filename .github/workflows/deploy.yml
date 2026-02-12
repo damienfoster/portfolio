@@ -1,0 +1,43 @@
+name: Deploy MkDocs to Lenovo
+on:
+  push:
+    branches:
+      - main  # Trigger only when you push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install MkDocs & Material Theme
+        run: pip install mkdocs-material
+
+      - name: Build Website
+        run: mkdocs build
+
+      - name: Install Cloudflared
+        run: |
+          wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+          sudo dpkg -i cloudflared-linux-amd64.deb
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          cat >> ~/.ssh/config <<EOF
+          Host ssh.damienfoster.net
+            ProxyCommand cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }}
+            StrictHostKeyChecking no
+          EOF
+
+      - name: Deploy to Lenovo via Rsync
+        run: |
+          rsync -avz --delete site/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
