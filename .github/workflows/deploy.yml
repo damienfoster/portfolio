@@ -42,7 +42,7 @@ jobs:
             ProxyCommand cloudflared access ssh --hostname %h --service-token-id $CF_ID --service-token-secret $CF_SECRET --port 22
             StrictHostKeyChecking no
           EOF
-          env:
+        env:
           CF_ID: "${{ secrets.CF_CLIENT_ID }}"
           CF_SECRET: "${{ secrets.CF_CLIENT_SECRET }}"
 
