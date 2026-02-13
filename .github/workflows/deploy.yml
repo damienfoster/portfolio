@@ -25,7 +25,7 @@ jobs:
           # This config tells the runner to use the tunnel for your specific domain
           cat >> ~/.ssh/config <<END
           Host ssh.damienfoster.net
-            ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }} --hostname %h
+            ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }}
             StrictHostKeyChecking no
           END
 
