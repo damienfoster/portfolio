@@ -32,4 +32,4 @@ jobs:
       - name: Deploy index.html to Docker Bind-Mount
         run: |
           # We use the domain name here to trigger the SSH Config above
-          scp -i ~/.ssh/id_rsa index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
+          scp -i ~/.ssh/id_rsa ./portfolio/index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
