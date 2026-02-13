@@ -12,21 +12,23 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # This step "opens the door" through Cloudflare Zero Trust
-      - name: install cloudflared
+      - name: Install cloudflared
         run: |
           wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared-linux-amd64.deb
 
-      - name: Test SSH Connection via Cloudflare
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          # This line tells SSH to use the Cloudflare tunnel
-          proxy_command: /usr/local/bin/cloudflared access ssh --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }} --target ${{ secrets.SSH_HOST }}
-          source: "index.html"
-          target: "/var/www/html"
-          strip_components: 0
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          # This tells SSH how to handle your Lenovo host via Cloudflare
+          cat >> ~/.ssh/config <<END
+          Host ${{ secrets.SSH_HOST }}
+            ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }} --target %h
+            StrictHostKeyChecking no
+          END
+
+      - name: Deploy index.html via SCP
+        run: |
+          scp -i ~/.ssh/id_rsa index.html ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/
