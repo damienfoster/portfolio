@@ -17,18 +17,19 @@ jobs:
           wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
           sudo dpkg -i cloudflared-linux-amd64.deb
 
-      - name: Setup SSH Key
+      - name: Setup SSH Key and Config
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          # This config tells the runner to use the tunnel for your specific domain
           cat >> ~/.ssh/config <<END
-          Host ${{ secrets.SSH_HOST }}
+          Host ssh.damienfoster.net
             ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }} --target %h
             StrictHostKeyChecking no
           END
 
-      - name: Deploy index.html to Docker Volume
+      - name: Deploy index.html to Docker Bind-Mount
         run: |
-          # Sending the file directly to the bind-mount source
-          scp -i ~/.ssh/id_rsa index.html d4mien@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
+          # We use the domain name here to trigger the SSH Config above
+          scp -i ~/.ssh/id_rsa index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
