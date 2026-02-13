@@ -20,8 +20,8 @@ jobs:
       - name: Setup SSH Key and Config
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
           # This config tells the runner to use the tunnel for your specific domain
           cat >> ~/.ssh/config <<END
           Host ssh.damienfoster.net
@@ -32,4 +32,4 @@ jobs:
       - name: Deploy index.html to Docker Bind-Mount
         run: |
           # We use the domain name here to trigger the SSH Config above
-          scp -i ~/.ssh/id_rsa index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
+          scp -i ~/.ssh/id_ed25519 index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
