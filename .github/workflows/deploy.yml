@@ -3,7 +3,7 @@ name: Barebones Test Deploy
 on:
   push:
     branches:
-      - master  # Matches the branch in your screenshot
+      - master
 
 jobs:
   test-connectivity:
@@ -15,9 +15,10 @@ jobs:
       - name: Test SSH Connection to Lenovo
         uses: appleboy/scp-action@master
         with:
-          host: ${{ secrets.SERVER_HOST }}     # Your Lenovo/Cloudflare IP
-          username: ${{ secrets.SERVER_USER }} # Your Lenovo username
-          key: ${{ secrets.SERVER_SSH_KEY }}   # Your Private SSH Key
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           source: "index.html"
-          target: "/var/www/html"              # Change this to your actual web folder
+          target: "/var/www/html" 
+          strip_components: 0
