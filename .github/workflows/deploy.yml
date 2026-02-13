@@ -22,13 +22,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          # This tells SSH how to handle your Lenovo host via Cloudflare
           cat >> ~/.ssh/config <<END
           Host ${{ secrets.SSH_HOST }}
             ProxyCommand /usr/local/bin/cloudflared access ssh --id ${{ secrets.CF_CLIENT_ID }} --secret ${{ secrets.CF_CLIENT_SECRET }} --target %h
             StrictHostKeyChecking no
           END
 
-      - name: Deploy index.html via SCP
+      - name: Deploy index.html to Docker Volume
         run: |
-          scp -i ~/.ssh/id_rsa index.html ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/var/www/html/
+          # Sending the file directly to the bind-mount source
+          scp -i ~/.ssh/id_rsa index.html d4mien@${{ secrets.SSH_HOST }}:/home/d4mien/nginx/html/
