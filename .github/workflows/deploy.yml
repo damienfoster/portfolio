@@ -32,7 +32,7 @@ jobs:
       - name: Deploy index.html to Docker Bind-Mount
         run: |
           # We use the domain name here to trigger the SSH Config above
-          scp -o ProxyCommand="/usr/local/bin/cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }}" \
+          scp -v -o ProxyCommand='cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }}' \
             -o StrictHostKeyChecking=no \
             -i ~/.ssh/id_ed25519 \
             index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
