@@ -1,28 +1,26 @@
-{#-
-  This file was automatically generated - do not edit
--#}
 {% extends "main.html" %}
-{% block tabs %}
-  {{ super() }}
-  <style>.md-header{position:initial}.md-main__inner{margin:0}.md-content{display:none}@media screen and (min-width:60em){.md-sidebar--secondary{display:none}}@media screen and (min-width:76.25em){.md-sidebar--primary{display:none}}</style>
-  <section class="mdx-container">
-    <div class="md-grid md-typeset">
-      <div class="mdx-hero">
-        <div class="mdx-hero__image">
-          <img src="assets/images/illustration.png" alt="" width="1659" height="1200" draggable="false">
-        </div>
-        <div class="mdx-hero__content">
-          <h1>Damien Foster Portfolio | Network Engineer</h1>
-          <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" class="md-button md-button--primary">
-            Plex
-          </a>
-          <a href="{{ 'insiders/' | url }}" title="Material for MkDocs Insiders" class="md-button">
-            NextCloud
-          </a>
-        </div>
+{% block tabs %}{% endblock %}
+{% block content %}
+  <section class="md-hero">
+    <div class="md-hero__inner md-grid">
+      <div class="md-hero__content">
+        <h1>Damien Foster | Network Engineer</h1>
+        <p>Building secure, automated infrastructure with Cloudflare and Docker.</p>
+        <a href="{{ 'Damien Foster Resume.pdf' | url }}" class="md-button md-button--primary" target="_blank">
+          Download Resume
+        </a>
+        <a href="https://github.com/d4mien/portfolio" class="md-button">
+          View Source Code
+        </a>
+      </div>
+      <div class="md-hero__image">
+        <img src="{{ 'assets/images/illustration.png' | url }}" alt="" draggable="false">
       </div>
     </div>
   </section>
+  <div class="md-content">
+    <div class="md-content__inner md-typeset">
+      {{ page.content }}
+    </div>
+  </div>
 {% endblock %}
-{% block content %}{% endblock %}
-{% block footer %}{% endblock %}
