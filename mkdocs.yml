@@ -31,6 +31,8 @@ theme:
 
 # Social links in the footer
 extra:
+  css:
+    - assets/stylesheets/extra.css 
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/damienfoster/
