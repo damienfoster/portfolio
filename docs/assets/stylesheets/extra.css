@@ -1,0 +1,20 @@
+/* KILL THE DYNAMIC THEME SPACER */
+:root {
+  --md-header-height: 0px !important;
+}
+
+/* TARGET THE DARK BACKGROUND SLIVER */
+[data-md-color-scheme="slate"] .md-main__inner {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* REMOVE FINAL CONTENT MARGINS */
+.md-content {
+  margin-top: 0 !important;
+}
+
+/* DOCK THE HERO TO THE NAV BAR */
+.md-hero {
+  margin-top: -48px !important;
+}
