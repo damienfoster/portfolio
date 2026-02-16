@@ -1,3 +1,4 @@
+# Project information
 site_name: Damien Foster | Portfolio
 site_url: https://damienfoster.net/
 site_author: Damien Foster
@@ -10,7 +11,13 @@ repo_url: https://github.com/d4mien/portfolio
 # Theme configuration
 theme:
   name: material
-  # Remove the custom_dir line to stop using the official MkDocs "Hero" template
+  icon:
+    logo: material/lan        # Professional networking icon
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - content.code.copy       # Allows visitors to copy code snippets easily
   palette:
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
@@ -20,22 +27,23 @@ theme:
       scheme: default
       primary: indigo
       accent: indigo
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - search.highlight
+
+# Social links in the footer
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/d4mien
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/your-profile-here
 
 # Professional Navigation
 nav:
   - Home: index.md
-  # You can add more pages here as you create them, e.g.:
-  # - Projects: projects.md
-  # - Lab Setup: lab.md
 
-# Extensions for clean technical docs
+# Extensions for technical documentation
 markdown_extensions:
-  - admonition
+  - attr_list                 # Required for the "Grid Cards" we discussed
+  - admonition                # Required for the "Info" summary boxes
   - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
