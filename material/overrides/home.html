@@ -2,13 +2,19 @@
 {% block tabs %}{% endblock %}
 
 <style>
+  /* 1. Kill the theme's automatic header offsets */
   :root { --md-header-height: 0px !important; }
+  
+  /* 2. Force the main container to ignore all padding/margins */
   .md-main__inner { margin-top: 0 !important; padding-top: 0 !important; }
   .md-content { margin-top: 0 !important; }
+
+  /* 3. Brute force reset for the specific content wrapper */
+  [data-md-component="main"] { padding-top: 0 !important; margin-top: 0 !important; }
 </style>
 
 {% block content %}
-  <div style="background-color: #4051b5; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: 0; overflow: hidden; z-index: 1;">
+  <div style="background-color: #4051b5; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; top: -48px; margin-bottom: -48px; overflow: hidden; z-index: 1;">
     
     <section class="md-hero" style="color: white; padding: 3rem 0 7rem;">
       <div class="md-grid md-typeset" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
@@ -18,12 +24,8 @@
           <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 0.5rem;">Building secure, automated infrastructure with Cloudflare and Docker.</p>
           
           <div style="margin: 2rem 0; display: flex; flex-wrap: wrap; gap: 1rem;">
-            <a href="{{ 'Damien Foster Resume.pdf' | url }}" class="md-button md-button--primary" style="background: white; color: #4051b5; border: none;">
-              Download Resume
-            </a>
-            <a href="https://github.com/d4mien/portfolio" class="md-button" style="color: white; border-color: white;">
-              View Source Code
-            </a>
+            <a href="{{ 'Damien Foster Resume.pdf' | url }}" class="md-button md-button--primary" style="background: white; color: #4051b5; border: none;">Download Resume</a>
+            <a href="https://github.com/d4mien/portfolio" class="md-button" style="color: white; border-color: white;">View Source Code</a>
           </div>
 
           <div style="background: rgba(74, 222, 128, 0.15); border: 1px solid #4ade80; border-radius: 8px; padding: 10px 16px; display: inline-flex; align-items: center; gap: 8px;">
@@ -45,7 +47,7 @@
     </section>
   </div>
 
-  <div class="md-content" style="margin-top: 2rem;">
+  <div class="md-content">
     <article class="md-content__inner md-typeset">
       {{ page.content }}
     </article>
