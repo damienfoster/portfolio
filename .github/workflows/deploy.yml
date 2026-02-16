@@ -1,4 +1,4 @@
-name: Barebones Test Deploy
+name: Deploy Portfolio
 
 on:
   push:
@@ -6,11 +6,23 @@ on:
       - master
 
 jobs:
-  test-connectivity:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install MkDocs and Theme
+        run: |
+          pip install mkdocs mkdocs-material
+
+      - name: Build MkDocs Site
+        run: mkdocs build
 
       - name: Install cloudflared
         run: |
@@ -22,20 +34,13 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          # This config tells the runner to use the tunnel for your specific domain
           cat >> ~/.ssh/config <<END
           Host ssh.damienfoster.net
             ProxyCommand /usr/local/bin/cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }}
             StrictHostKeyChecking no
           END
 
-      - name: Deploy index.html to Docker Bind-Mount
+      - name: Deploy Site to Lenovo
         run: |
-          # We use the domain name here to trigger the SSH Config above
-          scp -v -o ProxyCommand='cloudflared access ssh --hostname %h --service-token-id ${{ secrets.CF_CLIENT_ID }} --service-token-secret ${{ secrets.CF_CLIENT_SECRET }}' \
-            -o StrictHostKeyChecking=no \
-            -i ~/.ssh/id_ed25519 \
-            index.html d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
-            
-            
-            
+          # We transfer the contents of the 'site' folder created by MkDocs build
+          scp -v -r -i ~/.ssh/id_ed25519 ./site/* d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
