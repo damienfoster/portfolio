@@ -1,8 +1,13 @@
 {% extends "main.html" %}
 {% block tabs %}{% endblock %}
 
+<style>
+  .md-main__inner { margin-top: 0 !important; }
+  .md-content { margin-top: 0 !important; }
+</style>
+
 {% block content %}
-  <div style="background-color: #4051b5; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: -1.2rem; overflow: hidden; z-index: 1;">
+  <div style="background-color: #4051b5; width: 100vw; position: relative; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw; margin-top: -2.2rem; overflow: hidden; z-index: 1;">
     
     <section class="md-hero" style="color: white; padding: 3rem 0 7rem;">
       <div class="md-grid md-typeset" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 2rem;">
@@ -27,7 +32,7 @@
         </div>
 
         <div style="flex: 1; min-width: 300px; display: flex; justify-content: flex-end;">
-          <img src="{{ 'assets/images/illustration.png' | url }}" alt="Server Illustration" style="width: 100%; max-width: 480px; height: auto;">
+          <img src="{{ 'assets/images/illustration.png' | url }}" alt="Network Infrastructure Illustration" style="width: 100%; max-width: 480px; height: auto;">
         </div>
       </div>
 
