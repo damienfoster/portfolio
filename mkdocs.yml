@@ -32,9 +32,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/d4mien
+      link: https://github.com/damienfoster/
     - icon: fontawesome/brands/linkedin
-      link: https://www.linkedin.com/in/your-profile-here
+      link: https://www.linkedin.com/in/damien-foster123/
 
 # Professional Navigation
 nav:
