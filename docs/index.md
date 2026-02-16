@@ -1,4 +1,5 @@
 ---
+template: home.html
 title: Damien Foster | Network Engineer
 ---
 
