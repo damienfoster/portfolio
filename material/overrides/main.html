@@ -1,26 +1,28 @@
 {#-
-  This file was automatically generated - do not edit
+  This file was automatically generated - updated for Damien Foster
 -#}
 {% extends "base.html" %}
 {% block extrahead %}
   <link rel="stylesheet" href="{{ 'assets/stylesheets/custom.f120bdc6.min.css' | url }}">
 {% endblock %}
+
 {% block announce %}
-  For updates follow <strong>@squidfunk</strong> on
-  <a rel="me" href="https://fosstodon.org/@squidfunk">
-    <span class="twemoji mastodon">
-      {% include ".icons/fontawesome/brands/mastodon.svg" %}
+  Connect with me on 
+  <a href="https://github.com/damienfoster" target="_blank" rel="noopener">
+    <span class="twemoji github">
+      {% include ".icons/fontawesome/brands/github.svg" %}
     </span>
-    <strong>Fosstodon</strong>
+    <strong>GitHub</strong>
   </a>
-  and
-  <a href="https://x.com/squidfunk">
-    <span class="twemoji twitter">
-      {% include ".icons/fontawesome/brands/twitter.svg" %}
+  and 
+  <a href="https://www.linkedin.com/in/damien-foster123/" target="_blank" rel="noopener">
+    <span class="twemoji linkedin">
+      {% include ".icons/fontawesome/brands/linkedin.svg" %}
     </span>
-    <strong>Twitter</strong>
+    <strong>LinkedIn</strong>
   </a>
 {% endblock %}
+
 {% block scripts %}
   {{ super() }}
   <script src="{{ 'assets/javascripts/custom.f46acd93.min.js' | url }}"></script>
