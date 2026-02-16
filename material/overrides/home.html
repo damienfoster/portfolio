@@ -2,33 +2,41 @@
 {% block tabs %}{% endblock %}
 
 {% block content %}
-  <section class="md-hero" style="background-color: #4051b5; color: white; margin: 0 calc(-50vw + 50%); width: 100vw; position: relative; left: 50%; right: 50%; transform: translateX(-50%); padding-bottom: 100px;">
-    <div class="md-hero__inner md-grid" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 40px 20px;">
-      <div class="md-hero__content" style="flex: 1; text-align: left;">
-        <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 10px;">Damien Foster | Network Engineer</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9;">Building secure, automated infrastructure with Cloudflare and Docker.</p>
-        <div style="display: flex; gap: 15px;">
-          <a href="{{ 'Damien Foster Resume.pdf' | url }}" class="md-button md-button--primary" target="_blank" style="background-color: white; color: #4051b5; border: none;">
+  <section class="md-hero" style="background-color: #4051b5; color: white; position: relative; overflow: hidden; padding: 3em 0 6em;">
+    <div class="md-grid md-typeset" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+      
+      <div class="md-hero__content" style="flex: 1; min-width: 300px; padding-bottom: 2em;">
+        <h1 style="color: white; margin: 0;">Damien Foster | Network Engineer</h1>
+        <p style="font-size: 1.25rem; opacity: 0.9;">Building secure, automated infrastructure with Cloudflare and Docker.</p>
+        
+        <div style="margin: 1.5em 0;">
+          <a href="{{ 'Damien Foster Resume.pdf' | url }}" class="md-button md-button--primary" style="background: white; color: #4051b5; border: none;">
             Download Resume
           </a>
-          <a href="https://github.com/d4mien/portfolio" class="md-button" style="color: white; border: 1px solid white;">
+          <a href="https://github.com/d4mien/portfolio" class="md-button" style="color: white; border-color: white;">
             View Source Code
           </a>
         </div>
+
+        <div style="background: rgba(74, 222, 128, 0.15); border: 1px solid #4ade80; border-radius: 8px; padding: 12px 16px; display: inline-flex; align-items: center; gap: 8px;">
+          <span style="color: #4ade80; font-size: 1.2em;">✔</span>
+          <span style="font-size: 0.9em; font-weight: 500;"><strong>Lab Status: Online</strong> — Served via Cloudflare Tunnel</span>
+        </div>
       </div>
-      <div class="md-hero__image" style="flex: 1; display: flex; justify-content: flex-end;">
-        <img src="{{ 'assets/images/illustration.png' | url }}" alt="" draggable="false" style="width: 100%; max-width: 500px; height: auto;">
+
+      <div class="md-hero__image" style="flex: 1; min-width: 300px; text-align: right;">
+        <img src="{{ 'assets/images/illustration.png' | url }}" alt="" style="width: 100%; max-width: 500px; height: auto;">
       </div>
     </div>
-    
+
     <div style="position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 400" preserveAspectRatio="none" style="width: 100%; height: auto;">
-        <path d="M0 400V136.1C0 136.1 400 350.5 800 231.5C1200 112.5 1600 310.6 1600 310.6V400H0Z" fill="#1e2124"/>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 200" preserveAspectRatio="none" style="width: 100%; height: 120px;">
+        <path d="M0,200 L1600,200 L1600,50 C1200,150 400,0 0,100 Z" fill="#1e2124"/>
       </svg>
     </div>
   </section>
 
-  <div class="md-content" style="margin-top: 40px;">
+  <div class="md-content">
     <div class="md-content__inner md-typeset">
       {{ page.content }}
     </div>
