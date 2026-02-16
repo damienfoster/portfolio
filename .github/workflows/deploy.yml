@@ -42,5 +42,8 @@ jobs:
 
       - name: Deploy Site to Lenovo
         run: |
-          # We transfer the contents of the 'site' folder created by MkDocs build
+          # 1. Connect and delete old files first to ensure a clean slate
+          ssh -i ~/.ssh/id_ed25519 d4mien@ssh.damienfoster.net "rm -rf /home/d4mien/nginx/html/*"
+
+          # 2. Transfer the new MkDocs site content
           scp -v -r -i ~/.ssh/id_ed25519 ./site/* d4mien@ssh.damienfoster.net:/home/d4mien/nginx/html/
