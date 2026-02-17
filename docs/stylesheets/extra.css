@@ -8,7 +8,7 @@
 }
 /* Adjusts the size of the main name and title */
 .md-content h1 {
-    font-size: 2.0rem !important; /* Default is usually 2.5rem or larger */
+    font-size: 1.8rem !important; /* Default is usually 2.5rem or larger */
     line-height: 1.2;
     margin-bottom: 0.5em;
 }
