@@ -1,0 +1,8 @@
+/* This targets the container directly to remove the gap */
+.md-content {
+    margin-top: -100px !important;
+}
+
+.md-sidebar {
+    top: 0 !important;
+}
