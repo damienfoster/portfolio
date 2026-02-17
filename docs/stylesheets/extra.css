@@ -6,3 +6,15 @@
 .md-sidebar {
     top: 0 !important;
 }
+/* Adjusts the size of the main name and title */
+.md-content h1 {
+    font-size: 2.0rem !important; /* Default is usually 2.5rem or larger */
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+}
+
+/* Optional: If you want the 'Network Engineer' part even smaller than the name */
+h1 em, h1 span {
+    font-size: 0.8em;
+    opacity: 0.8;
+}
