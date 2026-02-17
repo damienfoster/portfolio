@@ -19,10 +19,14 @@ h1 em, h1 span {
     opacity: 0.8;
 }
 
-/* Aggressive mobile font fix */
-@media screen and (max-width: 400px) {
-    body .md-content h1 {
+/* Target everything that could be the Title on Mobile */
+@media screen and (max-width: 44.9375em) {
+    .md-content h1, 
+    .md-typeset h1,
+    [data-md-component="hero"] h1,
+    .md-hero h1 {
         font-size: 1.2rem !important; 
-        line-height: 1.0 !important;
+        line-height: 1.1 !important;
+        margin-top: 0 !important;
     }
 }
