@@ -18,3 +18,11 @@ h1 em, h1 span {
     font-size: 0.8em;
     opacity: 0.8;
 }
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 76.25em) {
+    .md-content h1 {
+        font-size: 1.5rem !important; /* Smaller size for mobile screens */
+        line-height: 1.1;
+    }
+}
